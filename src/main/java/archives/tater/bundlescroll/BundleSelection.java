@@ -8,14 +8,20 @@ import static java.lang.Math.floorMod;
 import static java.lang.Math.max;
 
 public class BundleSelection {
+    public static final String SELECTED_NBT = "Selected";
+
     public static int get(ItemStack itemStack) {
         NbtCompound nbtCompound = itemStack.getNbt();
         if (nbtCompound == null) return 0;
-        return nbtCompound.getInt("Selected");
+        return nbtCompound.getInt(SELECTED_NBT);
     }
 
     public static void set(ItemStack itemStack, int selected) {
-        itemStack.getOrCreateNbt().putInt("Selected", selected);
+        itemStack.getOrCreateNbt().putInt(BundleSelection.SELECTED_NBT, selected);
+    }
+
+    public static void clear(ItemStack itemStack) {
+        itemStack.removeSubNbt(BundleSelection.SELECTED_NBT);
     }
 
     public static void add(ItemStack itemStack, int amount) {
