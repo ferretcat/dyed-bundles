@@ -3,7 +3,8 @@
   "package": "archives.tater.bundlescroll.mixin.client",
   "compatibilityLevel": "JAVA_17",
   "client": [
-    "BundleTooltipComponentMixin"
+    "BundleTooltipComponentMixin",
+    "HandledScreenInvoker"
   ],
   "injectors": {
     "defaultRequire": 1
