@@ -3,7 +3,8 @@
 	"package": "archives.tater.bundlescroll.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"BundleItemMixin"
+		"BundleItemMixin",
+		"FeatureFlagsMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
