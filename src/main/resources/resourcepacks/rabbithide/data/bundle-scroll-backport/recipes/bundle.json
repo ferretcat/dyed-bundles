@@ -8,9 +8,14 @@
     "%": {
       "item": "minecraft:string"
     },
-    "#": {
-      "item": "minecraft:leather"
-    }
+    "#": [
+      {
+        "item": "minecraft:leather"
+      },
+      {
+        "item": "minecraft:rabbit_hide"
+      }
+    ]
   },
   "result": {
     "item": "minecraft:bundle"

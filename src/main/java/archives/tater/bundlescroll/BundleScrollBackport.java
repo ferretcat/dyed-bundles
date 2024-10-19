@@ -2,10 +2,14 @@ package archives.tater.bundlescroll;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.item.BundleItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +29,14 @@ public class BundleScrollBackport implements ModInitializer {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
+
+        //noinspection OptionalGetWithoutIsPresent
+        ResourceManagerHelper.registerBuiltinResourcePack(
+				new Identifier(MOD_ID, "rabbithide"),
+				FabricLoader.getInstance().getModContainer(MOD_ID).get(),
+				Text.of("Rabbit Hide Bundle"),
+				ResourcePackActivationType.NORMAL
+		);
 
 		ServerPlayNetworking.registerGlobalReceiver(SCROLL_PACKET_ID, (server, player, handler, buf, responseSender) -> {
 			int syncId = buf.readInt();
