@@ -1,4 +1,4 @@
-package archives.tater.bundlescroll;
+package archives.tater.bundlebackportish;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;

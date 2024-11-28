@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "archives.tater.bundlescroll.mixin.client",
+  "package": "archives.tater.bundlebackportish.mixin.client",
   "compatibilityLevel": "JAVA_17",
   "client": [
     "BundleTooltipComponentMixin",

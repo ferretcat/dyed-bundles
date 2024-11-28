@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "bundle-scroll-backport:bundle"
+        "recipe": "bundle-backportish:bundle"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "bundle-scroll-backport:bundle"
+      "bundle-backportish:bundle"
     ]
   },
   "sends_telemetry_event": false

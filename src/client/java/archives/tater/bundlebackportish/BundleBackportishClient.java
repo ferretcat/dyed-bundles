@@ -1,6 +1,6 @@
-package archives.tater.bundlescroll;
+package archives.tater.bundlebackportish;
 
-import archives.tater.bundlescroll.mixin.client.HandledScreenInvoker;
+import archives.tater.bundlebackportish.mixin.client.HandledScreenInvoker;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.slot.Slot;
 
-public class BundleScrollBackportClient implements ClientModInitializer {
+public class BundleBackportishClient implements ClientModInitializer {
 	private double accScroll = 0;
 
 	@Override
@@ -54,7 +54,7 @@ public class BundleScrollBackportClient implements ClientModInitializer {
 		buf.writeInt(slot.id);
 		buf.writeInt(-amt);
 
-		ClientPlayNetworking.send(BundleScrollBackport.SCROLL_PACKET_ID, buf);
+		ClientPlayNetworking.send(BundleBackportish.SCROLL_PACKET_ID, buf);
 
 		return false;
 	}

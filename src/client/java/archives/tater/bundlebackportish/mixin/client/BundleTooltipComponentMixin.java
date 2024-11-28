@@ -1,6 +1,6 @@
-package archives.tater.bundlescroll.mixin.client;
+package archives.tater.bundlebackportish.mixin.client;
 
-import archives.tater.bundlescroll.SelectionBundleTooltipData;
+import archives.tater.bundlebackportish.SelectionBundleTooltipData;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.tooltip.BundleTooltipComponent;

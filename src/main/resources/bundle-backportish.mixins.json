@@ -1,6 +1,6 @@
 {
 	"required": true,
-	"package": "archives.tater.bundlescroll.mixin",
+	"package": "archives.tater.bundlebackportish.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
 		"BundleItemMixin",

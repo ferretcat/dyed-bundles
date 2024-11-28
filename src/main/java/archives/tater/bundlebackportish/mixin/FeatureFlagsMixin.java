@@ -1,4 +1,4 @@
-package archives.tater.bundlescroll.mixin;
+package archives.tater.bundlebackportish.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.resource.featuretoggle.FeatureFlag;

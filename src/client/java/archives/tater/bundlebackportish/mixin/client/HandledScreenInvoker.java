@@ -1,4 +1,4 @@
-package archives.tater.bundlescroll.mixin.client;
+package archives.tater.bundlebackportish.mixin.client;
 
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.screen.slot.Slot;

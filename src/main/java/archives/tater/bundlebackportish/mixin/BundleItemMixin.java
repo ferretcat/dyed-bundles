@@ -1,7 +1,7 @@
-package archives.tater.bundlescroll.mixin;
+package archives.tater.bundlebackportish.mixin;
 
-import archives.tater.bundlescroll.BundleSelection;
-import archives.tater.bundlescroll.SelectionBundleTooltipData;
+import archives.tater.bundlebackportish.BundleSelection;
+import archives.tater.bundlebackportish.SelectionBundleTooltipData;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.item.BundleTooltipData;
 import net.minecraft.entity.player.PlayerEntity;

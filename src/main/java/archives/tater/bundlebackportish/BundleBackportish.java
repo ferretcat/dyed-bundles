@@ -1,4 +1,4 @@
-package archives.tater.bundlescroll;
+package archives.tater.bundlebackportish;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -14,8 +14,8 @@ import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BundleScrollBackport implements ModInitializer {
-	public static final String MOD_ID = "bundle-scroll-backport";
+public class BundleBackportish implements ModInitializer {
+	public static final String MOD_ID = "bundle-backportish";
 
 	// This logger is used to write text to the console and the log file.
 	// It is considered best practice to use your mod id as the logger's name.

@@ -22,7 +22,7 @@ loom {
 	splitEnvironmentSourceSets()
 
 	mods {
-		"bundle-scroll-backport" {
+		"bundle-backportish" {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
 		}
