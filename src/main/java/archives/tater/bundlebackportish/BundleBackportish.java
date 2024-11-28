@@ -7,6 +7,10 @@ import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.item.BundleItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.SpecialRecipeSerializer;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.text.Text;
@@ -24,11 +28,18 @@ public class BundleBackportish implements ModInitializer {
 
 	public static final Identifier SCROLL_PACKET_ID = new Identifier(MOD_ID, "scrollbundle");
 
+	public static final RecipeSerializer<BundleColoringRecipe> COLORING_RECIPE = Registry.register(
+			Registries.RECIPE_SERIALIZER,
+			new Identifier(MOD_ID, "crafting_special_bundlecoloring"),
+			new SpecialRecipeSerializer<>(BundleColoringRecipe::new)
+	);
+
 	@Override
 	public void onInitialize() {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
+		BundleBackportishItems.register();
 
         //noinspection OptionalGetWithoutIsPresent
         ResourceManagerHelper.registerBuiltinResourcePack(

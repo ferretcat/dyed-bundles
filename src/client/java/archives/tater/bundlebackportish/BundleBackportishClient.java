@@ -7,10 +7,12 @@ import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.item.BundleItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.util.Identifier;
 
 public class BundleBackportishClient implements ClientModInitializer {
 	private double accScroll = 0;
@@ -23,6 +25,12 @@ public class BundleBackportishClient implements ClientModInitializer {
 				ScreenMouseEvents.afterMouseScroll(screen).register((_screen, x, y, horiz, vert) ->
 						this.onMouseScrolled(handledScreen, x, y, vert));
 			}
+		});
+
+		ModelPredicateProviderRegistry.register(new Identifier(BundleBackportish.MOD_ID, "filled"), (stack, world, entity, seed) -> {
+			var item = stack.getItem();
+			if (!(item instanceof BundleItem)) return Float.NEGATIVE_INFINITY;
+			return BundleItem.getAmountFilled(stack);
 		});
 	}
 

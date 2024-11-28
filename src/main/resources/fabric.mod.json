@@ -20,6 +20,9 @@
 		],
 		"client": [
 			"archives.tater.bundlebackportish.BundleBackportishClient"
+		],
+		"fabric-datagen": [
+			"archives.tater.bundlebackportish.BundleBackportishData"
 		]
 	},
 	"mixins": [

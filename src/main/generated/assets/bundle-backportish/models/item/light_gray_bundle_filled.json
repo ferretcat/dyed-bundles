@@ -1,0 +1,6 @@
+{
+  "parent": "bundle-backportish:item/light_gray_bundle",
+  "textures": {
+    "layer0": "bundle-backportish:item/light_gray_bundle_filled"
+  }
+}

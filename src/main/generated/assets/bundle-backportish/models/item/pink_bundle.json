@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "bundle-backportish:item/pink_bundle_filled",
+      "predicate": {
+        "bundle-backportish:filled": 1.0E-7
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "bundle-backportish:item/pink_bundle"
+  }
+}

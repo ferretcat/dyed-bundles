@@ -6,6 +6,7 @@ import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.item.BundleTooltipData;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BundleItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.util.collection.DefaultedList;
@@ -71,5 +72,21 @@ public abstract class BundleItemMixin {
     )
     private static void fixAfterDropAll(ItemStack stack, PlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
         BundleSelection.clear(stack);
+    }
+
+    @Redirect(
+            method = "canMergeStack",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z")
+    )
+    private static boolean checkAnyBundleForMerge(ItemStack instance, Item item) {
+        return instance.getItem() instanceof BundleItem;
+    }
+
+    @Redirect(
+            method = "getItemOccupancy",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z", ordinal = 0)
+    )
+    private static boolean checkAnyBundleForOccupancy(ItemStack instance, Item item) {
+        return instance.getItem() instanceof BundleItem;
     }
 }

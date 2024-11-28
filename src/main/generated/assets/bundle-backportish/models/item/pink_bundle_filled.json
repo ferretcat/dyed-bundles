@@ -1,0 +1,6 @@
+{
+  "parent": "bundle-backportish:item/pink_bundle",
+  "textures": {
+    "layer0": "bundle-backportish:item/pink_bundle_filled"
+  }
+}
