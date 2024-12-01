@@ -3,15 +3,15 @@
 	"id": "bundle-backportish",
 	"version": "${version}",
 	"name": "Bundle Backport-ish",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "A backport of bundle mechanics using the original UI",
 	"authors": [
-		"Me!"
+		"ThePotatoArchivist"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/project/bundle-backportish",
+		"sources": "https://github.com/JosiahFu/BundleBackportish"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/bundle-backportish/icon.png",
 	"environment": "*",
 	"entrypoints": {
@@ -42,6 +42,5 @@
 		"fabric-api": "*"
 	},
 	"suggests": {
-		"another-mod": "*"
 	}
 }
