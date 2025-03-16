@@ -16,6 +16,10 @@ import org.slf4j.LoggerFactory;
 public class BundleBackportish implements ModInitializer {
 	public static final String MOD_ID = "bundle-backportish";
 
+	public static Identifier id(String path) {
+		return Identifier.of(MOD_ID, path);
+	}
+
 	// This logger is used to write text to the console and the log file.
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
@@ -23,7 +27,7 @@ public class BundleBackportish implements ModInitializer {
 
 	public static final RecipeSerializer<BundleColoringRecipe> COLORING_RECIPE = Registry.register(
 			Registries.RECIPE_SERIALIZER,
-			new Identifier(MOD_ID, "crafting_special_bundlecoloring"),
+			id("crafting_special_bundlecoloring"),
 			new SpecialRecipeSerializer<>(BundleColoringRecipe::new)
 	);
 
@@ -38,7 +42,7 @@ public class BundleBackportish implements ModInitializer {
 
         //noinspection OptionalGetWithoutIsPresent
         ResourceManagerHelper.registerBuiltinResourcePack(
-				new Identifier(MOD_ID, "rabbithide"),
+				id("rabbithide"),
 				FabricLoader.getInstance().getModContainer(MOD_ID).get(),
 				Text.of("Rabbit Hide Bundle"),
 				ResourcePackActivationType.NORMAL

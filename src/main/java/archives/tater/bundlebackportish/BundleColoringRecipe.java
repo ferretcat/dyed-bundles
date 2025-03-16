@@ -1,6 +1,5 @@
 package archives.tater.bundlebackportish;
 
-import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.BundleItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -8,8 +7,8 @@ import net.minecraft.item.Items;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.util.Identifier;
+import net.minecraft.recipe.input.CraftingRecipeInput;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -21,8 +20,8 @@ import static java.util.Map.entry;
 
 public class BundleColoringRecipe extends SpecialCraftingRecipe {
 
-    public BundleColoringRecipe(Identifier identifier, CraftingRecipeCategory craftingRecipeCategory) {
-        super(identifier, craftingRecipeCategory);
+    public BundleColoringRecipe(CraftingRecipeCategory craftingRecipeCategory) {
+        super(craftingRecipeCategory);
     }
 
     private <T> boolean containsExactly(Iterable<T> collection, Predicate<T> condition, int matchCount) {
@@ -45,21 +44,21 @@ public class BundleColoringRecipe extends SpecialCraftingRecipe {
         return null;
     }
 
-    public boolean matches(RecipeInputInventory recipeInputInventory, World world) {
-        var items = recipeInputInventory.getInputStacks().stream().map(ItemStack::getItem).toList();
+    @Override
+    public boolean matches(CraftingRecipeInput input, World world) {
+        var items = input.getStacks().stream().map(ItemStack::getItem).toList();
         return containsExactly(items, item -> item instanceof BundleItem, 1) &&
                 containsExactly(items, COLORS::containsKey, 1);
     }
 
-    public ItemStack craft(RecipeInputInventory recipeInputInventory, DynamicRegistryManager dynamicRegistryManager) {
-        var bundle = find(recipeInputInventory.getInputStacks(), stack -> stack.getItem() instanceof BundleItem);
-        var dye = find(recipeInputInventory.getInputStacks(), stack -> COLORS.containsKey(stack.getItem()));
+    @Override
+    public ItemStack craft(CraftingRecipeInput input, RegistryWrapper.WrapperLookup registries) {
+        var bundle = find(input.getStacks(), stack -> stack.getItem() instanceof BundleItem);
+        var dye = find(input.getStacks(), stack -> COLORS.containsKey(stack.getItem()));
         if (bundle == null || dye == null) return ItemStack.EMPTY; // This shouldn't happen but just in case
         var outputBundle = COLORS.get(dye.getItem());
         if (bundle.isOf(outputBundle)) return ItemStack.EMPTY;
-        var resultStack = new ItemStack(outputBundle);
-        resultStack.setNbt(bundle.getNbt());
-        return resultStack;
+        return bundle.copyComponentsToNewStack(outputBundle, 1);
     }
 
     @Override
@@ -68,7 +67,7 @@ public class BundleColoringRecipe extends SpecialCraftingRecipe {
     }
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<? extends SpecialCraftingRecipe> getSerializer() {
         return BundleBackportish.COLORING_RECIPE;
     }
 

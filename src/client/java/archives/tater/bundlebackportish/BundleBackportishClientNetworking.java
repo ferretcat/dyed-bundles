@@ -4,11 +4,11 @@ import archives.tater.bundlebackportish.mixin.client.HandledScreenInvoker;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.BundleContentsComponent;
 import net.minecraft.item.BundleItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.slot.Slot;
 
 /**
@@ -33,7 +33,7 @@ public class BundleBackportishClientNetworking {
             return true;
         }
         ItemStack stack = slot.getStack();
-        if (!(stack.getItem() instanceof BundleItem)) {
+        if (!(stack.getItem() instanceof BundleItem) || stack.getOrDefault(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT).isEmpty()) {
             return true;
         }
         if (accScroll * scroll < 0) {
@@ -48,14 +48,12 @@ public class BundleBackportishClientNetworking {
 
         BundleSelection.add(stack, -amt);
 
-        PacketByteBuf buf = PacketByteBufs.create();
-
-        buf.writeInt(screen.getScreenHandler().syncId);
-        buf.writeInt(screen.getScreenHandler().getRevision());
-        buf.writeInt(slot.id);
-        buf.writeInt(-amt);
-
-        ClientPlayNetworking.send(BundleBackportishNetworking.SCROLL_PACKET_ID, buf);
+        ClientPlayNetworking.send(new BundleScrollPayload(
+                screen.getScreenHandler().syncId,
+                screen.getScreenHandler().getRevision(),
+                slot.id,
+                -amt
+        ));
 
         return false;
     }

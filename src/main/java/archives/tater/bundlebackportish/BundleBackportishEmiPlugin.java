@@ -18,7 +18,7 @@ public class BundleBackportishEmiPlugin implements EmiPlugin {
     @Override
     public void register(EmiRegistry emiRegistry) {
         if (emiRegistry.getRecipeManager().listAllOfType(RecipeType.CRAFTING).stream()
-                .anyMatch(craftingRecipe -> craftingRecipe instanceof BundleColoringRecipe)) {
+                .anyMatch(craftingRecipe -> craftingRecipe.value() instanceof BundleColoringRecipe)) {
             BundleColoringRecipe.COLORS.forEach((dye, bundle) -> {
                 emiRegistry.addRecipe(new EmiCraftingRecipe(
                         List.of(EmiIngredient.of(BUNDLES.stream()
@@ -26,7 +26,7 @@ public class BundleBackportishEmiPlugin implements EmiPlugin {
                                 .map(EmiStack::of)
                                 .toList()), EmiStack.of(dye)),
                         EmiStack.of(bundle),
-                        Registries.ITEM.getId(bundle),
+                        Registries.ITEM.getId(bundle).withPrefixedPath("/"),
                         true));
             });
         }

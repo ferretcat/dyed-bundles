@@ -7,7 +7,6 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.*;
 import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
 
 import java.util.Optional;
 
@@ -23,7 +22,7 @@ public class ModelGenerator extends FabricModelProvider {
 
         var filledOverride = new JsonObject();
         var predicate = new JsonObject();
-        predicate.addProperty(new Identifier(BundleBackportish.MOD_ID, "filled").toString(), 0.0000001);
+        predicate.addProperty(BundleBackportish.id("filled").toString(), 0.0000001);
         filledOverride.add("predicate", predicate);
         filledOverride.addProperty("model", filledModelId.toString());
         var overrides = new JsonArray();

@@ -1,22 +1,29 @@
 package archives.tater.bundlebackportish;
 
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.component.ComponentType;
 import net.minecraft.item.BundleItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
+import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.dynamic.Codecs;
+
+import java.util.function.UnaryOperator;
 
 public class BundleBackportishItems {
     private static Item register(String path, Item item) {
-        return Registry.register(Registries.ITEM, new Identifier(BundleBackportish.MOD_ID, path), item);
+        return Registry.register(Registries.ITEM, BundleBackportish.id(path), item);
     }
 
     private static Item registerBundle(String color) {
-        return register(color + "_bundle", new BundleItem(new FabricItemSettings().maxCount(1)));
+        return register(color + "_bundle", new BundleItem(new Item.Settings().maxCount(1)));
+    }
+
+    private static <T> ComponentType<T> register(String id, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
+        return Registry.register(Registries.DATA_COMPONENT_TYPE, id, (builderOperator.apply(ComponentType.builder())).build());
     }
 
     public static final Item WHITE_BUNDLE = registerBundle("white");
@@ -35,6 +42,9 @@ public class BundleBackportishItems {
     public static final Item GREEN_BUNDLE = registerBundle("green");
     public static final Item RED_BUNDLE = registerBundle("red");
     public static final Item BLACK_BUNDLE = registerBundle("black");
+
+    public static final ComponentType<Integer> BUNDLE_SELECTION = register("bundle_selection",
+            (builder) -> builder.codec(Codecs.NONNEGATIVE_INT).packetCodec(PacketCodecs.VAR_INT));
 
     public static void register() {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(fabricItemGroupEntries ->
