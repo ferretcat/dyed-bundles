@@ -2,6 +2,8 @@ package archives.tater.bundlebackportish;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.component.ComponentType;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.BundleContentsComponent;
 import net.minecraft.item.BundleItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
@@ -19,7 +21,9 @@ public class BundleBackportishItems {
     }
 
     private static Item registerBundle(String color) {
-        return register(color + "_bundle", new BundleItem(new Item.Settings().maxCount(1)));
+        return register(color + "_bundle", new BundleItem(new Item.Settings()
+                .maxCount(1)
+                .component(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT)));
     }
 
     private static <T> ComponentType<T> register(String id, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
