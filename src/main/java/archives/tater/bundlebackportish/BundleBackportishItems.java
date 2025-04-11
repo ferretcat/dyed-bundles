@@ -26,8 +26,8 @@ public class BundleBackportishItems {
                 .component(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT)));
     }
 
-    private static <T> ComponentType<T> register(String id, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
-        return Registry.register(Registries.DATA_COMPONENT_TYPE, id, (builderOperator.apply(ComponentType.builder())).build());
+    private static <T> ComponentType<T> register(String path, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
+        return Registry.register(Registries.DATA_COMPONENT_TYPE, BundleBackportish.id(path), (builderOperator.apply(ComponentType.builder())).build());
     }
 
     public static final Item WHITE_BUNDLE = registerBundle("white");
