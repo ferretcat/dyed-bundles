@@ -1,14 +1,13 @@
 {
-  "required": true,
-  "package": "archives.tater.bundlebackportish.mixin",
-  "compatibilityLevel": "JAVA_17",
-  "mixins": [
-    "BundleContentsComponentBuilderAccessor",
-    "BundleContentsComponentInvoker",
-    "BundleItemMixin",
-    "FeatureFlagsMixin"
-  ],
-  "injectors": {
-    "defaultRequire": 1
-	}
+    "required": true,
+    "package": "archives.tater.bundlebackportish.mixin",
+    "compatibilityLevel": "JAVA_17",
+    "mixins": [
+        "BundleContentsComponentBuilderAccessor",
+        "BundleContentsComponentInvoker",
+        "FeatureFlagsMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
 }
