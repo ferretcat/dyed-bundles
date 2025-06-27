@@ -60,7 +60,6 @@ dependencies {
 
 	modCompileOnly "dev.emi:emi-fabric:${project.emi_version}:api"
 	modLocalRuntime "dev.emi:emi-fabric:${project.emi_version}"
-	modCompileOnly modLocalRuntime("maven.modrinth:mouse-tweaks:${project.mousetweaks_version}-fabric")
 }
 
 processResources {

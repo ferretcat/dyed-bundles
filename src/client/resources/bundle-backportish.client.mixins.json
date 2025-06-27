@@ -1,14 +1,12 @@
 {
-  "required": true,
-  "package": "archives.tater.bundlebackportish.mixin.client",
-  "compatibilityLevel": "JAVA_17",
-  "client": [
-    "BundleTooltipComponentMixin",
-    "HandledScreenInvoker",
-    "MouseTweaksMixin"
-  ],
-  "plugin": "archives.tater.bundlebackportish.BundleBackportishClientMixinConfigPlugin",
-  "injectors": {
-    "defaultRequire": 1
-  }
+    "required": true,
+    "package": "archives.tater.bundlebackportish.mixin.client",
+    "compatibilityLevel": "JAVA_17",
+    "client": [
+        "HandledScreenInvoker"
+    ],
+    "plugin": "archives.tater.bundlebackportish.BundleBackportishClientMixinConfigPlugin",
+    "injectors": {
+        "defaultRequire": 1
+    }
 }
