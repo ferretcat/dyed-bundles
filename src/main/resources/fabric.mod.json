@@ -1,46 +1,45 @@
 {
-	"schemaVersion": 1,
-	"id": "bundle-backportish",
-	"version": "${version}",
-	"name": "Bundle Backport-ish",
-	"description": "A backport of bundle mechanics using the original UI",
-	"authors": [
-		"ThePotatoArchivist"
-	],
-	"contact": {
-		"homepage": "https://modrinth.com/project/bundle-backportish",
-		"sources": "https://github.com/ThePotatoArchivist/BundleBackportish"
-	},
-	"license": "MIT",
-	"icon": "assets/bundle-backportish/icon.png",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-			"archives.tater.bundlebackportish.BundleBackportish"
-		],
-		"client": [
-			"archives.tater.bundlebackportish.BundleBackportishClient"
-		],
-		"fabric-datagen": [
-			"archives.tater.bundlebackportish.BundleBackportishData"
-		],
-		"emi": [
-			"archives.tater.bundlebackportish.BundleBackportishEmiPlugin"
-		]
-	},
-	"mixins": [
-		"bundle-backportish.mixins.json",
-		{
-			"config": "bundle-backportish.client.mixins.json",
-			"environment": "client"
-		}
-	],
-	"depends": {
-		"fabricloader": ">=0.16.7",
-		"minecraft": ">=1.21 <1.21.2",
-		"java": ">=17",
-		"fabric-api": "*"
-	},
-	"suggests": {
-	}
+    "schemaVersion": 1,
+    "id": "bundle-backportish",
+    "version": "${version}",
+    "name": "Dyed Bundles",
+    "description": "",
+    "authors": [
+        "ferretcat"
+    ],
+    "contact": {
+        "homepage": "https://github.com/ferretcat/dyed-bundles",
+        "sources": "https://github.com/ferretcat/dyed-bundles"
+    },
+    "license": "MIT",
+    "icon": "assets/bundle-backportish/icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "archives.tater.bundlebackportish.BundleBackportish"
+        ],
+        "client": [
+            "archives.tater.bundlebackportish.BundleBackportishClient"
+        ],
+        "fabric-datagen": [
+            "archives.tater.bundlebackportish.BundleBackportishData"
+        ],
+        "emi": [
+            "archives.tater.bundlebackportish.BundleBackportishEmiPlugin"
+        ]
+    },
+    "mixins": [
+        "bundle-backportish.mixins.json",
+        {
+            "config": "bundle-backportish.client.mixins.json",
+            "environment": "client"
+        }
+    ],
+    "depends": {
+        "fabricloader": ">=0.16.7",
+        "minecraft": ">=1.21 <1.21.2",
+        "java": ">=17",
+        "fabric-api": "*"
+    },
+    "suggests": {}
 }
