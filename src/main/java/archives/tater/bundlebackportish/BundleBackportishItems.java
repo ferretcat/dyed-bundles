@@ -1,19 +1,14 @@
 package archives.tater.bundlebackportish;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.component.ComponentType;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.BundleContentsComponent;
 import net.minecraft.item.BundleItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
-import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.util.dynamic.Codecs;
-
-import java.util.function.UnaryOperator;
 
 public class BundleBackportishItems {
     private static Item register(String path, Item item) {
@@ -24,10 +19,6 @@ public class BundleBackportishItems {
         return register(color + "_bundle", new BundleItem(new Item.Settings()
                 .maxCount(1)
                 .component(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT)));
-    }
-
-    private static <T> ComponentType<T> register(String path, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
-        return Registry.register(Registries.DATA_COMPONENT_TYPE, BundleBackportish.id(path), (builderOperator.apply(ComponentType.builder())).build());
     }
 
     public static final Item WHITE_BUNDLE = registerBundle("white");
@@ -47,12 +38,9 @@ public class BundleBackportishItems {
     public static final Item RED_BUNDLE = registerBundle("red");
     public static final Item BLACK_BUNDLE = registerBundle("black");
 
-    public static final ComponentType<Integer> BUNDLE_SELECTION = register("bundle_selection",
-            (builder) -> builder.codec(Codecs.NONNEGATIVE_INT).packetCodec(PacketCodecs.VAR_INT));
-
     public static void register() {
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(fabricItemGroupEntries ->
-                fabricItemGroupEntries.addAfter(Items.BUNDLE,
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS)
+                .register(fabricItemGroupEntries -> fabricItemGroupEntries.addAfter(Items.BUNDLE,
                         WHITE_BUNDLE,
                         LIGHT_GRAY_BUNDLE,
                         GRAY_BUNDLE,
@@ -68,8 +56,6 @@ public class BundleBackportishItems {
                         BLUE_BUNDLE,
                         PURPLE_BUNDLE,
                         MAGENTA_BUNDLE,
-                        PINK_BUNDLE
-                )
-        );
+                        PINK_BUNDLE));
     }
 }
