@@ -2,9 +2,7 @@
     "required": true,
     "package": "archives.tater.bundlebackportish.mixin.client",
     "compatibilityLevel": "JAVA_17",
-    "client": [
-        "HandledScreenInvoker"
-    ],
+    "client": [],
     "plugin": "archives.tater.bundlebackportish.BundleBackportishClientMixinConfigPlugin",
     "injectors": {
         "defaultRequire": 1
